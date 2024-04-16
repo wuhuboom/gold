@@ -1,4 +1,4 @@
-export const baseUrl = 'https://apiapi.uunn.org'
+export const baseUrl = 'https://api.uunn.org'
 export default {
     baseUrl
 }

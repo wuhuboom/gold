@@ -1,85 +1,70 @@
 <template>
 	<view class="login">
-		<language></language>
-		<view class="back" @click="goBack">
-			<uni-icons type="arrow-left" size="40" color="#fff"></uni-icons>
-		</view>
-		<view class="title">
-			{{$t('login.title.text')}}
-		</view>
-		<view class="sub-title">
-			{{$t('login.subtitle.text')}}
-		</view>
-		<view class="form">
-			<uni-forms ref="form" :modelValue="formData" :rules="rules" label-position="top">
-				<uni-forms-item :label="$t('register.username.text')" name="username">
-					<uni-easyinput type="text" prefixIcon="auth" v-model="formData.username" :placeholder="$t('ruls.xxx.please',{name:$t('register.username.text')})" />
-				</uni-forms-item>
-				<uni-forms-item :label="$t('register.password.text')" name="password">
-					<uni-easyinput type="password" prefixIcon="locked" v-model="formData.password" :placeholder="$t('ruls.xxx.please',{name:$t('register.password.text')})" />
-				</uni-forms-item>
-				
-			</uni-forms>
-			<view class="forget-box">
-				<view class="forget">
-					{{$t('login.forgetpwd.text')}}
-				</view>
-				<view class="reset" @click="goReset">
-					{{$t('login.resetpwd.text')}}
-				</view>
+		<view class="content">
+			<view class="title">
+				{{$t('index.signin')}}
 			</view>
-			<button class="btn" @click="submit">{{$t('login.login.text')}}</button>
+			<view class="form">
+				<uni-forms ref="form" :modelValue="formData" :rules="rules" label-position="top">
+					<uni-forms-item name="username">
+						<uni-easyinput type="text" v-model="formData.username" :placeholder="$t('login.form.username')" />
+					</uni-forms-item>
+					<uni-forms-item name="password">
+						<uni-easyinput type="password" v-model="formData.password" :placeholder="$t('login.form.pwd')" />
+					</uni-forms-item>
+					<uni-forms-item name="code" class="code-item">
+						<uni-easyinput type="text" v-model="formData.code" :placeholder="$t('login.form.code')" />
+						<image :src="vercodeImg" class="code-img" mode="scaleToFill" @click="getCodeData"></image>
+					</uni-forms-item>
+				</uni-forms>
+				 
+				<button class="btn" @click="submit">{{$t('btn.ok.text')}}</button>
+			</view>
 		</view>
 		
-		<view class="hasAccount">
-			<view class="tips">{{$t('login.noaccount.text')}}</view>
-			<view class="login-link" @click="goRegister">{{$t('login.register.text')}}</view>
-		</view>
-		
-		<view class="down-box">
-			<view class="down-text">{{$t('login.down.text')}}</view>
-			<uni-icons type="download" size="30" color="#fff"></uni-icons>
-		</view>
+		 
 	</view>
 </template>
 
 <script>
-	import language  from '@/components/language.vue'
 	export default {
 		components:{
-			language
 		},
 		data() {
 			return {
 				formData:{
 					password :'',
-					username :''
+					username :'',
+					code:''
 				},
 				rules: {
 					username: {
 						rules: [
-							{required: true,errorMessage: this.$t('ruls.xxx.empty',{name:this.$t('register.username.text')})}
+							{required: true,errorMessage: this.$t('ruls.xxx.empty',{name:this.$t('login.form.username')})}
 						]
 					},
 					 password: {
 					 	rules: [
-					 		{required: true,errorMessage: this.$t('ruls.xxx.empty',{name:this.$t('register.password.text')})}
+					 		{required: true,errorMessage: this.$t('ruls.xxx.empty',{name:this.$t('login.form.pwd')})}
+					 	]
+					 },
+					 code: {
+					 	rules: [
+					 		{required: true,errorMessage: this.$t('ruls.xxx.empty',{name:this.$t('login.form.code')})}
 					 	]
 					 }
-				}
+				},
+				vercodeImg:'',
+				verifyKey:''
 			}
 		},
 		onLoad() {
+			this.getCodeData()
 		},
 		methods: {
 			goReset(){
 				uni.navigateTo({
 					url:'/pages/login/forgetPwd'
-				})
-			},
-			goBack(){
-				uni.navigateBack({
-					delta:1
 				})
 			},
 			goRegister(){
@@ -90,6 +75,7 @@
 			submit(){
 				this.$refs.form.validate().then(res=>{
 					const para = Object.assign({},this.formData)
+					para.verifyKey = this.verifyKey
 					this.$http.post('/player/auth/login',para,(res=>{
 						if(res.code ==200){
 							uni.setStorageSync("token",res.data.token)
@@ -97,10 +83,24 @@
 							uni.switchTab({
 								url:'/pages/home/home'
 							})
+						}else{
+							this.getCodeData()
 						}
 					}))
 				}).catch(err =>{
 					console.log(err);
+				})
+			},
+			getCodeData() { //获取验证码方法
+			    this.verifyKey = "";
+			    this.vercodeImg = ""
+			    this.formData.verificationCode = ''
+				const verifyKey = new Date().getTime()
+				this.$http.get('/player/auth/verify_code?verifyKey=' + verifyKey,{},res=>{
+					if(res.code==200){
+						this.vercodeImg = res.data.img
+						this.verifyKey = res.data.verifyKey
+					}
 				})
 			},
 		}	 
@@ -109,73 +109,64 @@
 
 <style lang="scss" scoped>
 .login{
-	width: 670upx;
+	width: 750upx;
 	height: 100vh;
-	padding: 40upx;
-	.title{
-		color: #fff;
-		font-size: 24px;
-		margin-top: 40upx;
-	}
-	.sub-title{
-		color:#fff;
-		font-size: 14px;
-		margin-bottom: 60upx;
-		letter-spacing: 2upx;
-	}
-	.form{
-		width: 670upx;
-		::v-deep .uni-forms-item__label{
-			color: #fff;
+	background-image: url('../../static/images/login/bg.webp');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	.content{
+		padding: 40upx;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.title{
+			margin-top: 20upx;
+			font-size: 32upx;
+			font-weight: bold;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.23;
+			letter-spacing: 2.6px;
+			color: #b57d3c;
 		}
-		::v-deep .uni-easyinput__content{
-			background-color: rgb(24, 24, 34)!important;
-			border-color: rgb(24, 24, 34)!important;
-			color: rgb(255,255,255)!important;
-		}
-		::v-deep .uni-icons{
-			color: $fontColor!important;
-		}
-		.btn{
-			background-color: $fontColor;
-			color: #fff;
-		}
-		.forget-box{
-			display: flex;
-			justify-content: end;
-			color: #fff;
-			margin-bottom: 40upx;
-			.reset{
-				color: $fontColor;
+		.form{
+			width: 580upx;
+			margin-top: 200upx;
+			::v-deep .uni-easyinput__content{
+				background-color: transparent!important;
+				border: solid 1px #a5a5a5!important;
+				font-size: 10px;
+				font-weight: bold;
+				letter-spacing: 1px;
+				color: #c1a374!important;
 			}
-		}
-	}
-	.hasAccount{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin-top: 40upx;
-		.tips{
-			margin-right: 20upx;
-			color:#fff;
-		}
-		.login-link{
-			margin-left: 20upx;
-			color: $fontColor;
-		}
-	}
-	.down-box{
-		display: flex;
-		width: 670upx;
-		align-items: center;
-		justify-content: center;
-		background-color: $fontColor;
-		color: #fff;
-		height: 90upx;
-		border-radius: 10upx;
-		margin-top: 20upx;
-		.down-text{
-			margin-right: 30upx;
+			::v-deep .uni-input-placeholder{
+				letter-spacing: 1px;
+				color: #c1a374!important;
+			}
+			::v-deep .uni-forms-item__label{
+				display: none;
+			}
+			::v-deep .uni-icons{
+				color: #c1a374!important;
+			}
+			.code-item{
+				position: relative;
+				.code-img{
+					position: absolute;
+					right: 10upx;
+					top:6upx;
+					width: 150upx;
+					height: 60upx;
+				}
+			}
+			
+			.btn{
+				width: 342upx;
+				height: 82upx;
+				background-image: url('../../static/images/index/okbtn.webp');
+				background-size: 100%;
+			}
 		}
 	}
 }

@@ -1,11 +1,15 @@
 <template>
 	<view class="language">
-		<uni-data-select
-		  v-model="langVal"
-		  :localdata="langOpt"
-		  @change="langChange"
-		  :clear="false"
-		></uni-data-select>
+		<view class="lang-target" @click="showSelect=!showSelect">
+			<img :src="langItem.icon"/>
+			<view class="lang-name">{{langItem.name}}</view>
+		</view>
+		<view class="lang-select" v-if="showSelect">
+			<view class="lang-item" v-for="(item,index) in langOpt" :key="index" @click="langChange(item)">
+				<img :src="item.icon"/>
+				<view class="lang-name">{{item.name}}</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -13,26 +17,31 @@
 	export default {
 		data() {
 			return {
-				langVal: uni.getLocale(),
 				langOpt:[
-					{value:'en',text:'EN',name:'English'},
-					{value:'zh',text:'ZH',name:'中文'}
-				]
+					{name:'en',icon:'../static/images/lang/EN.webp'},
+					{name:'vn',icon:'../static/images/lang/VN.webp'},
+					{name:'de',icon:'../static/images/lang/DE.webp'},
+					{name:'es',icon:'../static/images/lang/ES.webp'},
+					{name:'fr',icon:'../static/images/lang/FR.webp'},
+					{name:'ins',icon:'../static/images/lang/INS.webp'}
+				],
+				langItem:{},
+				showSelect:false
 			}
 		},
-		computed: {
-		    getLangName() {
-		        return () => {
-		            return this.langOpt.find(item => item.value == this.langVal).label
-		        }
-		    }
+		mounted() {
+			const langVal = uni.getLocale() || 'en'
+			this.langItem = this.langOpt.find(item=>item.name==langVal)
 		},
 		methods: {
-			langChange(value) {
+			langChange(item) {
+				const value = item.name
 			    console.log('语言改变', value);
 			    this.$i18n.locale = value;
 			    uni.setStorageSync('selectLang', value);
 			    location.reload();
+				this.langItem = item 
+				this.showSelect=false
 			},
 		}
 	}
@@ -41,27 +50,48 @@
 <style lang="scss" scoped>
 	.language{
 		position: absolute;
-		top: 60upx;
+		bottom: 40upx;
 		right: 60upx;
-		// width: 80upx;
-		// height: 50upx;
 		background-color: transparent;
-		
-		color: #fff;
-		::v-deep .uni-select__input-text{
-			color: #fff;
+		.lang-target{
+			display: flex;
+			align-items: center;
+			height: 30upx;
+			img{
+				width: 50upx;
+				height: 26upx;
+			}
+			.lang-name{
+				text-transform: uppercase;
+				font-size: 24upx;
+				line-height: 1.4;
+				letter-spacing: 3upx;
+				color: #93643a;
+				margin-left: 10upx;
+			}
 		}
-		::v-deep .uni-select__input-box .uni-icons{
-			color: #fff!important;
-			// display: none;
+		.lang-select{
+			position: absolute;
+			bottom: 60upx;
+			.lang-item{
+				display: flex;
+				align-items: center;
+				height: 30upx;
+				margin-top: 20upx;
+				img{
+					width: 50upx;
+					height: 26upx;
+				}
+				.lang-name{
+					text-transform: uppercase;
+					font-size: 24upx;
+					line-height: 1.4;
+					letter-spacing: 3upx;
+					color: #93643a;
+					margin-left: 10upx;
+				}
+			}
 		}
-		::v-deep .uni-select__selector{
-			background-color: $bgColor;
-			border: 1px solid $fontColor;
-			backdrop-filter: 6px;
-		}
-		::v-deep .uni-select{
-			border: 1px solid $fontColor;
-		}
+		 
 	}
 </style>

@@ -1,29 +1,17 @@
 <template>
-	<view class="login">
+	<view class="gold-index">
 		<language></language>
-		<view class="top">
-			<image src="../../static/images/login/logo.png"></image>
-			<view class="sub-title">
-				{{$t('login.logo.text')}}
-			</view>
-		</view>
-		<view class="form">
-			<view class="title">{{$t('login.begin.text')}}</view>
-			<view class="email-box" @click="goRegister">
-				<uni-icons type="email-filled" size="30" color="#000"></uni-icons>
-				<view class="text">{{$t('login.email.placehoder')}}</view>
-			</view>
-			<view class="hasAccount">
-				<view class="tips">{{$t('login.hasaccount.text')}}</view>
-				<view class="login-link" @click="gologin">{{$t('login.login.text')}}</view>
-			</view>
-			
-			<view class="down-box" @click="down">
-				<view class="down-text" >{{$t('login.down.text')}}</view>
-				<uni-icons type="download" size="30" color="#fff"></uni-icons>
-			</view>
-				
-		</view>
+		 <view class="content">
+			 <view class="welcome">{{$t('index.welcome')}}</view>
+			 <view class="sign">
+				 <image src="../../static/images/index/icon1.webp" mode="scaleToFill"></image>
+				 <view class="tips" @click="goLogin">{{$t('index.signin')}}</view>
+			 </view>
+			 <view class="sign">
+				 <image src="../../static/images/index/icon2.webp"  mode="scaleToFill"></image>
+				 <view class="tips" @click="goRegister">{{$t('index.signup')}}</view>
+			 </view>
+		 </view>
 	</view>
 </template>
 
@@ -65,7 +53,7 @@
 			        this.osType = 0
 			    }
 			},
-			gologin(){
+			goLogin(){
 				uni.navigateTo({
 					url:'/pages/login/login'
 				})
@@ -80,68 +68,41 @@
 </script>
 
 <style scoped lang="scss">
-.login{
-	height: 100vh;
+.gold-index{
 	width: 750upx;
-	color: #fff;
-	.top{
-		padding-top: 20vh;
-		text-align: center;
-		image{
-			width: 500upx;
-			height: 12vh;
+	height: 100vh;
+	background-image: url('../../static/images/index/bg.webp');
+	background-size: 100% 100%;
+	.content{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 60vh;
+		.welcome{
+			color: #b57d3c;
+			font-size: 26upx;
+			letter-spacing: 5.2upx;
+			font-weight: bold;
+			margin-bottom: 60upx;
 		}
-		.sub-title{
-			font-size: 14px;
-			letter-spacing: 1.5upx;
-			margin-top: 10upx;
-		}
-	}
-	.form{
-		margin-top: 10vh;
-		padding:40upx;
-		text-align: center;
-		.title{
-			font-size: 16px;
-		}
-		.email-box{
+		.sign{
 			display: flex;
+			flex-direction: column;
 			align-items: center;
-			background-color: #fff;
-			height: 90upx;
-			border-radius: 10upx;
-			margin-top: 20upx;
-			padding-left: 40upx;
-			.text{
-				color: #000;
-				padding-left: 80upx;
+			margin-top: 50upx;
+			image{
+				width: 60upx;
+				height: 60upx;
 			}
-		}
-		.hasAccount{
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin-top: 40upx;
 			.tips{
-				margin-right: 20upx;
-			}
-			.login-link{
-				margin-left: 20upx;
-				color: $fontColor;
-			}
-		}
-		.down-box{
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			background-color: $fontColor;
-			color: #fff;
-			height: 90upx;
-			border-radius: 10upx;
-			margin-top: 20upx;
-			padding-left: 40upx;
-			.down-text{
-				margin-right: 30upx;
+				margin-top: 20upx;
+				font-size: 26upx;
+				font-weight: bold;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: 1.15;
+				letter-spacing: 1.95px;
+				color: #93643a;
 			}
 		}
 	}

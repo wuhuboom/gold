@@ -27,15 +27,15 @@
 				"navigationStyle":"custom"
 			}
 		},
-		{
-			"path" : "pages/home/home",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
+		// {
+		// 	"path" : "pages/home/home",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
 		{
 			"path" : "pages/login/forgetPwd",
 			"style" : 
@@ -44,322 +44,277 @@
 				"enablePullDownRefresh" : false,
 				"navigationStyle":"custom"
 			}
-		},
-		{
-			"path" : "pages/home/notice",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/home/gameTools",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/home/gameToolsDetai",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/user",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/invest/invest",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/information/information",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/invite",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/property",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/investment",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/income",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/security",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/myfriend",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/contract",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/setting",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/recharge",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/inrecord",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/outrecord",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/withdraw",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/exchange",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/updateEmail",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/updatePassword",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/updateFundPwd",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/friendlist",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/friendIncomInvest",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/friendIncomeTeam",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/settingLanguage",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/settingAboutUs",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/information/decetion",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/invest/record",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/investDetail",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/investRecord",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/balanceRecord",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/addressManage",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/addressAdd",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path" : "pages/user/addressEdit",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle":"custom"
-			}
 		}
+		// {
+		// 	"path" : "pages/user/user",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/invite",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/property",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/investment",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/income",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/security",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/myfriend",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/contract",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/setting",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/recharge",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/inrecord",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/outrecord",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/withdraw",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/exchange",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/updateEmail",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/updatePassword",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/updateFundPwd",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/friendlist",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/friendIncomInvest",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/friendIncomeTeam",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/settingLanguage",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/settingAboutUs",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/information/decetion",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/invest/record",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/investDetail",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/investRecord",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/balanceRecord",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/addressManage",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/addressAdd",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
+		// {
+		// 	"path" : "pages/user/addressEdit",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"enablePullDownRefresh" : false,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// }
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -93,17 +93,6 @@ function get(url, con, success) {
  
 function post(url, data, success) {
     let conf = {};
-    // if (con && typeof con == 'function') {
-    //     if (success && typeof success == 'object') {
-    //         conf = success
-    //     }
-    //     conf.success = con;
-    // } else {
-    //     if (con && typeof con == 'object') {
-    //         conf = con;
-    //     }
-    //     conf.success = success;
-    // }
 	if(success){
 		conf.success = success
 	}
