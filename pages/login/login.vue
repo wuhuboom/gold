@@ -20,9 +20,13 @@
 				 
 				<button class="btn" @click="submit">{{$t('btn.ok.text')}}</button>
 			</view>
+			<view class="link">
+				<view class="link-item top" @click="goRegister">{{$t('index.signup')}}</view>
+				<view class="link-item" @click="goReset">{{$t('index.forgetPwd')}}</view>
+				<view class="link-item" @click="goService">{{$t('index.service')}}</view>
+				<view class="link-item" @click="download">{{$t('index.appdown')}}</view>
+			</view>
 		</view>
-		
-		 
 	</view>
 </template>
 
@@ -55,10 +59,13 @@
 					 }
 				},
 				vercodeImg:'',
-				verifyKey:''
+				verifyKey:'',
+				osType:'',
+				downObj:{}
 			}
 		},
 		onLoad() {
+			this.getOsType()
 			this.getCodeData()
 		},
 		methods: {
@@ -71,6 +78,35 @@
 				uni.navigateTo({
 					url:'/pages/login/register'
 				})
+			},
+			goService(){
+				this.$http.get('/player/home/serv',{},res=>{
+					if(res.code==200){
+						 window.location.href = res.data.serviceAddr
+					}
+				})
+			},
+			download(){
+				this.$http.get('/player/home/app_url',res=>{
+					res = res.data
+					res.forEach(item => {
+						if(item.appType==this.osType){
+							this.downObj = item
+						}
+					});
+					if(this.downObj.appUrl){
+						setTimeout(() => {
+							window.location.href = this.downObj.appUrl
+						}, 1000)
+					}
+				})
+			},
+			getOsType() {
+			    if (navigator.userAgent.indexOf('iPhone') !== -1) {
+			        this.osType = 1
+			    } else if (navigator.userAgent.indexOf('Android') !== -1) {
+			        this.osType = 0
+			    }
 			},
 			submit(){
 				this.$refs.form.validate().then(res=>{
@@ -120,7 +156,7 @@
 		flex-direction: column;
 		align-items: center;
 		.title{
-			margin-top: 20upx;
+			margin-top: 80upx;
 			font-size: 32upx;
 			font-weight: bold;
 			font-stretch: normal;
@@ -139,6 +175,7 @@
 				font-weight: bold;
 				letter-spacing: 1px;
 				color: #c1a374!important;
+				margin-top: 20upx;
 			}
 			::v-deep .uni-input-placeholder{
 				letter-spacing: 1px;
@@ -155,7 +192,7 @@
 				.code-img{
 					position: absolute;
 					right: 10upx;
-					top:6upx;
+					top:26upx;
 					width: 150upx;
 					height: 60upx;
 				}
@@ -164,8 +201,36 @@
 			.btn{
 				width: 342upx;
 				height: 82upx;
+				line-height: 82upx;
 				background-image: url('../../static/images/index/okbtn.webp');
 				background-size: 100%;
+				color:#93643a;
+				font-size: 26upx;
+				font-weight: bold;
+				font-style: normal;
+				letter-spacing: 4upx;
+			}
+		}
+		.link{
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			margin-top: 400upx;
+			width: 620upx;
+			.link-item{
+				font-size: 20upx;
+				color: #c1a374;
+				font-weight: bold;
+			    line-height: 2.8;
+				letter-spacing: 1px;
+			}
+			.top{
+				font-size: 26upx;
+				font-weight: bold;
+				line-height: 1.15;
+				letter-spacing: 1.95px;
+				color: #93643a;
+				margin-bottom: 20upx;
 			}
 		}
 	}

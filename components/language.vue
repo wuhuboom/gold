@@ -19,6 +19,7 @@
 			return {
 				langOpt:[
 					{name:'en',icon:'../static/images/lang/EN.webp'},
+					{name:'zh',icon:'../static/images/lang/ZH.webp'},
 					{name:'vn',icon:'../static/images/lang/VN.webp'},
 					{name:'de',icon:'../static/images/lang/DE.webp'},
 					{name:'es',icon:'../static/images/lang/ES.webp'},
