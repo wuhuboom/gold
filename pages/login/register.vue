@@ -55,13 +55,15 @@
 			</view>
 		</view>
 		
-		 
+		 <popup-dialog ref="popupDialog" :title="$t('register.success.dialog.title')" :content="$t('register.success.dialog.content')" @confirm="goLogin"></popup-dialog>
 	</view>
 </template>
 
 <script>
+	import PopupDialog from '@/components/popup-dialog.vue'
 	export default {
 		components:{ 
+			PopupDialog
 		},
 		data() {
 			return {
@@ -163,15 +165,7 @@
 						if(res.code ==200){
 							uni.setStorageSync("token",res.data.token)
 							uni.setStorageSync("user",res.data.user)
-							uni.showToast({
-								title:this.$t('register.success.text'),
-								duration:2000,
-								success() {
-									uni.navigateTo({
-										url:'/pages/login/login'
-									})
-								}
-							})
+							this.$refs.popupDialog.open()
 						}else{
 							this.isSendCode = false
 						}
@@ -261,12 +255,12 @@
 			getCodeData() { //获取验证码方法
 			    this.verifyKey = "";
 			    this.vercodeImg = ""
-			    this.formData.verificationCode = ''
+			    this.formData.code = ''
 				const verifyKey = new Date().getTime()
 				this.$http.get('/player/auth/verify_code?verifyKey=' + verifyKey,{},res=>{
 					if(res.code==200){
 						this.vercodeImg = res.data.img
-						this.verifyKey = res.data.verifyKey
+						this.formData.verifyKey = res.data.verifyKey
 					}
 				})
 			}
@@ -299,7 +293,7 @@
 		}
 		.form{
 			width: 580upx;
-			margin-top: 200upx;
+			margin-top: 12vh;
 			::v-deep .uni-easyinput__content{
 				background-color: transparent!important;
 				border: solid 1px #a5a5a5!important;
@@ -320,6 +314,12 @@
 			}
 			::v-deep .uni-icons{
 				color: #c1a374!important;
+			}
+			::v-deep .uni-select__selector{
+				background-color: #dde0e8;
+			}
+			::v-deep .uni-popper__arrow::after{
+				border-bottom-color: #dde0e8!important;
 			}
 			.areacode-sel{
 				width: 150upx;
@@ -351,7 +351,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: flex-end;
-			margin-top: 60upx;
+			margin-top: 80upx;
 			width: 620upx;
 			.link-item{
 				font-size: 20upx;

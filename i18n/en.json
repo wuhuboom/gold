@@ -19,6 +19,10 @@
 	"register.form.phone":"PHONE NUMBER",
 	"register.form.phoneCode":"SMS VERIFICATION CODE",
 	"register.form.code":"VERIFICATION CODE",
+	"register.success.dialog.title":"CONGRATULATIONS!",
+	"register.success.dialog.content":"YOUR ACCOUNT HAS BEEN SUCCESFFULLY CREATED",
+	"forget.phoneVerifiCode": "PHONE VERIFICODE",
+	"forget.emailVerifiCode": "EMAIL VERIFICODE",
 	
 	
   "btn.ok.text":"OKAY",

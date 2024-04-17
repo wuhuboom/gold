@@ -167,7 +167,7 @@
 		}
 		.form{
 			width: 580upx;
-			margin-top: 200upx;
+			margin-top: 11vh;
 			::v-deep .uni-easyinput__content{
 				background-color: transparent!important;
 				border: solid 1px #a5a5a5!important;
@@ -215,8 +215,9 @@
 			display: flex;
 			flex-direction: column;
 			align-items: flex-end;
-			margin-top: 400upx;
 			width: 620upx;
+			position: absolute;
+			bottom: 100upx;
 			.link-item{
 				font-size: 20upx;
 				color: #c1a374;

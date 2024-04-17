@@ -19,6 +19,6 @@
 		margin: 0upx;
 	}
 	page{
-		background-color: #fefeff;
+		background-color: #dde0e8;
 	}
 </style>
