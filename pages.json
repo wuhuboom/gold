@@ -24,15 +24,15 @@
 				"navigationStyle":"custom"
 			}
 		},
-		// {
-		// 	"path" : "pages/home/home",
-		// 	"style" : 
-		// 	{
-		// 		"navigationBarTitleText" : "",
-		// 		"enablePullDownRefresh" : false,
-		// 		"navigationStyle":"custom"
-		// 	}
-		// },
+		{
+			"path" : "pages/home/home",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
+			}
+		},
 		{
 			"path" : "pages/login/forgetPwd",
 			"style" : 
@@ -321,13 +321,14 @@
 	"tabBar": {
 		"color": "#f5f5f5",
 		"selectedColor": "#f5f5f5",
-		"borderStyle": "black",
-		"backgroundColor": "rgb(23,23,23)",
+		"borderStyle": "white",
+		"backgroundColor": "#dde0e8",
 		"list": [
 			{
 				"pagePath": "pages/home/home",
-				"selectedIconPath": "static/images/tabbar/homeActive.png",
-				"iconPath": "static/images/tabbar/home.png"
+				"selectedIconPath": "static/images/tabbar/order.webp",
+				"iconPath": "static/images/tabbar/order.webp",
+				"text": "ORDER"
 			},
 			{
 				"pagePath": "pages/invest/invest",

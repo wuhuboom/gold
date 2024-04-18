@@ -23,8 +23,10 @@
 	"register.success.dialog.content":"YOUR ACCOUNT HAS BEEN SUCCESFFULLY CREATED",
 	"forget.phoneVerifiCode": "PHONE VERIFICODE",
 	"forget.emailVerifiCode": "EMAIL VERIFICODE",
+	"forget.select.tips":"SELECT VERIFICATION METHOD",
+	"page.home.title":"HOME",
 	
-	
+  
   "btn.ok.text":"OKAY",
   "ruls.email":"Please input the correct email address",
   "ruls.twoPassword":"The two password inputs are inconsistent",

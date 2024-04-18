@@ -21,4 +21,17 @@
 	page{
 		background-color: #dde0e8;
 	}
+	.page-title{
+		margin-top: 80upx;
+		font-size: 32upx;
+		font-weight: bold;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.23;
+		letter-spacing: 2.6px;
+		color: #b57d3c;
+		position: relative;
+		width: 100%;
+		text-align: center;
+	}
 </style>

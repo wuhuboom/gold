@@ -19,6 +19,7 @@
 						<uni-easyinput type="newPwd" v-model="formData.twicePwd" :placeholder="$t('register.form.pwd.again')" />
 					</uni-forms-item>
 					<uni-forms-item name="vertifyType">
+						<view class="select-tips">{{$t('forget.select.tips')}}</view>
 						<view class="type-select">
 							<uni-data-select v-model="formData.vertifyType" :localdata="vertifyTypes" :clear="false"></uni-data-select>
 						</view>
@@ -311,6 +312,14 @@
 			}
 			::v-deep .uni-popper__arrow::after{
 				border-bottom-color: #dde0e8!important;
+			}
+			.select-tips{
+			  font-size: 26upx;
+			  font-weight: bold;
+			  line-height: 1.1;
+			  letter-spacing: 1px;
+			  color: #c1a374;
+			  margin-bottom: 10upx;
 			}
 			.type-select{
 				border: solid 1px #a5a5a5!important;
