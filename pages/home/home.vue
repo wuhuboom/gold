@@ -4,7 +4,7 @@
 			{{$t('page.home.title')}}
 		</view>
 		<view class="notice">
-			<image src="../../static/images/home/Group7.webp" mode="scaleToFill"></image>
+			<img src="../../static/images/home/Group7.webp"></img>
 			<uni-notice-bar scrollable single :text="notice.content" :speed="50" background-color="#dde0e8" color="#c1a374"></uni-notice-bar>
 		</view>
 		<view class="swiper" v-if="swipers.length > 0">
@@ -137,9 +137,9 @@
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
-		image{
+		img{
 			width: 50upx;
-			height: 50upx;
+			height: auto;
 		}
 		::v-deep .uni-noticebar{
 			margin-bottom: 0upx;
