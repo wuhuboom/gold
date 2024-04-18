@@ -25,9 +25,13 @@
 	"forget.emailVerifiCode": "EMAIL VERIFICODE",
 	"forget.select.tips":"SELECT VERIFICATION METHOD",
 	"page.home.title":"HOME",
+	"version.dialog.title":"NEW VERSION IS AVAILABLE",
+	"version.dialog.content":"UPDATE NOW",
 	
   
   "btn.ok.text":"OKAY",
+  "btn.yes.text":"YES",
+  "btn.no.text":"NO",
   "ruls.email":"Please input the correct email address",
   "ruls.twoPassword":"The two password inputs are inconsistent",
   "ruls.xxx.please": "please enter {name}",

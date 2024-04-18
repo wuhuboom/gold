@@ -58,7 +58,7 @@ http.beforeResponseFilter = function (res) {
 			  },
 			});
 			return
-		}else{
+		}else if(res.code){
 			uni.showToast({
 				title:res.msg,
 				icon:'error',

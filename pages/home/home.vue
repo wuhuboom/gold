@@ -1,7 +1,7 @@
 <template>
 	<view class="home">
 		<view class="page-title">
-			{{$t('index.signin')}}
+			{{$t('page.home.title')}}
 		</view>
 		<view class="swiper" v-if="swipers.length > 0">
 			<uni-swiper-dot :info="swipers" :current="current" field="content" :mode="mode">
@@ -22,14 +22,18 @@
 		 
 	 
 		
-		<uni-popup ref="popup" :mask-click="false" background-color="#001413">
-			<view class="popup-content">
-				<view class="popup-logo">
-					<image src="" mode="scaleToFill"></image>
+		 
+		<uni-popup ref="versionPopup" type="center" :animation="false" background-color="transparent" border-radius="10px 10px 0 0" :is-mask-click="false">
+			<view class="version-dialog">
+				<view class="popup-title">{{$t('version.dialog.title')}}</view>
+				<view class="popup-content">{{$t('version.dialog.content')}}</view>
+				<view class="popup-btn" v-if="!showProcess">
+					<view class="yes-btn" @click="yesUpdate">{{$t('btn.yes.text')}}</view>
+					<view class="no-btn" @click="noUpdate">{{$t('btn.no.text')}}</view>
 				</view>
-				<view class="popup-title">{{$t('security.update.fundpwd.text')}}</view>
-				<view class="popup-info">{{$t('security.update.fundpwd.set.text')}}</view>
-				<button @click="goSetPwd" class="popup-btn">{{$t('btn.change.confirm.text')}}</button>
+				<view class="update-process" v-else>
+					
+				</view>
 			</view>
 		</uni-popup>
 	</view>
@@ -46,14 +50,40 @@
 				notice:{
 					content:'[单行] 这是 NoticeBar '
 				},
+				curVersion:0,
+				showProcess:false,
+				process:0
 			}
 		},
 		onLoad() {
 			this.checkSetPwd()
 			this.getSwitch()
 			this.loadNotice()
+			this.getVersion()
 		},
 		methods: {
+			async yesUpdate(){
+				uni.setStorageSync('cur_version',this.curVersion)
+				this.showProcess = true
+				while(this.process < 100){
+					this.process += 10
+					await new Promise((resolve) => setTimeout(resolve, 1000));
+				}
+				this.noUpdate()
+				this.showProcess = false
+				window.location.reload()
+			},
+			noUpdate(){
+				this.$refs.versionPopup.close()
+			},
+			getVersion(){
+				this.curVersion = uni.getStorageSync('cur_version') || 0
+				this.$http.get('/player/home/version',res=>{
+					if(this.curVersion > 0 && this.curVersion != res){
+						this.$refs.versionPopup.open()
+					}
+				})
+			},
 			goSetPwd(){
 				uni.navigateTo({
 					url:'/pages/user/updateFundPwd?type=home'
@@ -114,6 +144,49 @@
 		 		height: 100%;
 		 	}
 		 }
+	 }
+	 .version-dialog{
+	 	background-image: url('../../static/images/index/poup-bg.webp');
+	 	background-size: 100%;
+	 	width:600upx;
+	 	height: 460upx;
+	 	display: flex;
+	 	flex-direction: column;
+	 	align-items: center;
+	 	position: relative;
+	 	.popup-title{
+	 		font-size: 26upx;
+	 		font-weight: bold;
+	 		line-height: 1.15;
+	 		letter-spacing: 1.95px;
+	 		color: #93643a;
+	 		margin-top: 100upx;
+	 	}
+	 	.popup-content{
+	 	  font-size: 20upx;
+	 	  font-weight: bold;
+	 	  line-height: 2;
+	 	  letter-spacing: 1px;
+	 	  text-align: center;
+	 	  color: #c1a374;
+	 	  margin-top: 40upx;
+	 	  padding: 20upx;
+	 	}
+	 	.popup-btn{
+	 		background-image: url('../../static/images/index/okbtn.webp');
+	 		background-size: 100%;
+	 		width: 268upx;
+	 		height: 72upx;
+	 		line-height: 72upx;
+	 		text-align: center;
+	 		position: absolute;
+	 		bottom: 60upx;
+	 		font-size: 26upx;
+	 	    font-weight: bold;
+	 	    letter-spacing: 1.95px;
+	 	    color: #93643a;
+	 		
+	 	}
 	 }
 }
 </style>

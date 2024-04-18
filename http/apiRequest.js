@@ -51,14 +51,7 @@ function request(con) {
         responseType: con.responseType ? con.responseType : 'text',
         success: con.success ? (res) => {
 			res = http.beforeResponseFilter(res)
-			if(con.method=='GET'){
-				if(res.code == 200){
-					con.success(res)
-				}
-			}else{
-				con.success(res)
-			}
-			
+			con.success(res)
         } : null,
         fail: con.fail ? (res) => {
             con.fail(res);
