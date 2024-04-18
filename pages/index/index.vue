@@ -72,12 +72,13 @@
 	width: 750upx;
 	height: 100vh;
 	background-image: url('../../static/images/index/bg.webp');
-	background-size: 100% 100%;
+	background-size: contain;
+	background-repeat: no-repeat;
 	.content{
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding-top: 60vh;
+		padding-top: 800upx;
 		.welcome{
 			color: #b57d3c;
 			font-size: 26upx;

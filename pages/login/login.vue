@@ -2,6 +2,9 @@
 	<view class="login">
 		<view class="content">
 			<view class="title">
+				<view class="back" @click="goBack">
+					<uni-icons type="left" color="#b57d3c" size="22"></uni-icons>
+				</view>
 				{{$t('index.signin')}}
 			</view>
 			<view class="form">
@@ -69,6 +72,11 @@
 			this.getCodeData()
 		},
 		methods: {
+			goBack(){
+				uni.navigateTo({
+					url:'/pages/index/index'
+				})
+			},
 			goReset(){
 				uni.navigateTo({
 					url:'/pages/login/forgetPwd'
@@ -149,7 +157,7 @@
 	height: 100vh;
 	background-image: url('../../static/images/login/bg.webp');
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	background-size: 100%;
 	.content{
 		padding: 40upx;
 		display: flex;
@@ -164,10 +172,17 @@
 			line-height: 1.23;
 			letter-spacing: 2.6px;
 			color: #b57d3c;
+			position: relative;
+			width: 100%;
+			text-align: center;
+			.back{
+				position: absolute;
+				top:-8upx
+			}
 		}
 		.form{
 			width: 580upx;
-			margin-top: 11vh;
+			margin-top: 150upx;
 			::v-deep .uni-easyinput__content{
 				background-color: transparent!important;
 				border: solid 1px #a5a5a5!important;
@@ -204,11 +219,13 @@
 				line-height: 82upx;
 				background-image: url('../../static/images/index/okbtn.webp');
 				background-size: 100%;
+				background-color: transparent;
 				color:#93643a;
 				font-size: 26upx;
 				font-weight: bold;
 				font-style: normal;
 				letter-spacing: 4upx;
+				margin-top: 100upx;
 			}
 		}
 		.link{
@@ -216,8 +233,7 @@
 			flex-direction: column;
 			align-items: flex-end;
 			width: 620upx;
-			position: absolute;
-			bottom: 100upx;
+			margin-top: 400upx;
 			.link-item{
 				font-size: 20upx;
 				color: #c1a374;
