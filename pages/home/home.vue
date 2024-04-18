@@ -3,6 +3,10 @@
 		<view class="page-title">
 			{{$t('page.home.title')}}
 		</view>
+		<view class="notice">
+			<image src="../../static/images/home/Group7.webp" mode="scaleToFill"></image>
+			<uni-notice-bar scrollable single :text="notice.content" :speed="50" background-color="#dde0e8" color="#c1a374"></uni-notice-bar>
+		</view>
 		<view class="swiper" v-if="swipers.length > 0">
 			<uni-swiper-dot :info="swipers" :current="current" field="content" :mode="mode">
 				<swiper class="swiper-box" :autoplay="true" :circular="true">
@@ -14,10 +18,7 @@
 				</swiper>
 			</uni-swiper-dot>
 		</view>
-		<view class="notice">
-			<uni-notice-bar scrollable single showIcon showGetMore :text="notice.content" :speed="50" background-color="" color="#fff" @getmore="getNotice"></uni-notice-bar>
-		</view>
-		 
+		
 		 
 		 
 	 
@@ -32,7 +33,7 @@
 					<view class="no-btn" @click="noUpdate">{{$t('btn.no.text')}}</view>
 				</view>
 				<view class="update-process" v-else>
-					
+					<progress :percent="process" :show-info="false" stroke-width="6" border-radius="5" activeColor="#b57d3c" background-color="#fff"/>
 				</view>
 			</view>
 		</uni-popup>
@@ -81,6 +82,7 @@
 				this.$http.get('/player/home/version',res=>{
 					if(this.curVersion > 0 && this.curVersion != res){
 						this.$refs.versionPopup.open()
+						this.curVersion = res
 					}
 				})
 			},
@@ -131,6 +133,18 @@
 	 height: 100vh;
 	 padding-left: 40upx;
 	 padding-right: 40upx;
+	.notice{
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		image{
+			width: 50upx;
+			height: 50upx;
+		}
+		::v-deep .uni-noticebar{
+			margin-bottom: 0upx;
+		}
+	}
 	 .swiper{
 		 height: 20vh;
 		 ::v-deep .uni-swiper__warp,.swiper-box{
@@ -145,6 +159,7 @@
 		 	}
 		 }
 	 }
+	
 	 .version-dialog{
 	 	background-image: url('../../static/images/index/poup-bg.webp');
 	 	background-size: 100%;
@@ -174,19 +189,28 @@
 	 	}
 	 	.popup-btn{
 	 		background-image: url('../../static/images/index/okbtn.webp');
-	 		background-size: 100%;
-	 		width: 268upx;
+	 		background-size: 100% 100%;
+			margin-top: 60upx;
+	 		width: 368upx;
 	 		height: 72upx;
-	 		line-height: 72upx;
-	 		text-align: center;
-	 		position: absolute;
-	 		bottom: 60upx;
 	 		font-size: 26upx;
 	 	    font-weight: bold;
 	 	    letter-spacing: 1.95px;
 	 	    color: #93643a;
-	 		
+	 		display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.yes-btn{
+				margin-left: 80upx;
+			}
+			.no-btn{
+				margin-right: 60upx;
+			}
 	 	}
+		.update-process{
+			margin-top: 60upx;
+			width: 60%;
+		}
 	 }
 }
 </style>

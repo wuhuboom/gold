@@ -19,6 +19,9 @@
 		margin: 0upx;
 	}
 	page{
+		max-width: 750px;
+		width: 750upx;
+		height: 100vh;
 		background-color: #dde0e8;
 	}
 	.page-title{
