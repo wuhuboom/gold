@@ -18,7 +18,43 @@
 				</swiper>
 			</uni-swiper-dot>
 		</view>
-		
+		<view class="user-header">
+			<view class="user-title">{{$t('home.hello.text')}} 
+				<text class="user-name">{{perInfo.username}}</text>
+			</view>
+			<view class="user-title">{{$t('home.welcome.text')}}</view>
+		</view>
+		<view class="user-info">
+			<view class="bg-img">
+				<img src="../../static/images/home/Union3.webp"></img>
+			</view>
+			<view class="user-content">
+				<view class="left">
+					<view class="handle-item">
+						<img src="../../static/images/home/Group17.webp"></img>
+						<view class="handle-text">{{$t('home.wallet.text')}}</view>
+					</view>
+					<view class="handle-item">
+						<img src="../../static/images/home/Group20.webp"></img>
+						<view class="handle-text">{{$t('home.recharge.text')}}</view>
+					</view>
+					<view class="handle-item">
+						<img src="../../static/images/home/Group23.webp"></img>
+						<view class="handle-text">{{$t('home.withdraw.text')}}</view>
+					</view>
+				</view>
+				<view class="right">
+					<img src="../../static/images/home/profile.webp">
+					<view class="balance">
+						<view class="balance-title">{{$t('home.balance.text')}}</view>
+						<view class="balance-num">{{getAmount(perInfo.balance || 0)}}</view>
+					</view>
+				</view>
+			</view>
+			<view class="bg-img">
+				<img src="../../static/images/home/Union4.webp"></img>
+			</view>
+		</view>
 		 
 		 
 	 
@@ -41,26 +77,30 @@
 </template>
 
 <script>
-	import {formatNum} from '@/utils/util.js'
+	import {getAmount} from '@/utils/util.js'
 	export default {
 		data() {
 			return {
+				getAmount:getAmount,
 				swipers:[],
 				current: 0,
 				mode: 'round',
 				notice:{
-					content:'[单行] 这是 NoticeBar '
+					content:''
 				},
 				curVersion:0,
 				showProcess:false,
-				process:0
+				process:0,
+				perInfo:{}
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.checkSetPwd()
 			this.getSwitch()
 			this.loadNotice()
 			this.getVersion()
+			this.$store.dispatch('getUserInfo')
+			this.perInfo = uni.getStorageSync('accountInfo')
 		},
 		methods: {
 			async yesUpdate(){
@@ -83,6 +123,8 @@
 					if(this.curVersion > 0 && this.curVersion != res){
 						this.$refs.versionPopup.open()
 						this.curVersion = res
+					}else{
+						uni.setStorageSync('cur_version',res)
 					}
 				})
 			},
@@ -107,6 +149,7 @@
 						this.swipers  = res.data
 					}
 				})
+				this.$store.dispatch('getUserInfo',2)
 			},
 			loadSwiper(){
 				this.$http.get('/player/home/slider',(res)=>{
@@ -145,6 +188,82 @@
 			margin-bottom: 0upx;
 		}
 	}
+	.user-header{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: 28upx;
+		font-weight: bold;
+		line-height: 40upx;
+		letter-spacing: 1.56px;
+		color: #93643a;
+		margin-top: 30upx;
+		margin-bottom: 30upx;
+		.user-name{
+			margin-left: 20upx;
+			color: #484a53;
+		}
+	}
+	.user-info{
+		width: 670upx;
+		.bg-img{
+			img{
+				width: 100%;
+				height: auto;
+			}
+		}
+		.user-content{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 500upx;
+			.left{
+				width: 40%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-between;
+				.handle-item{
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					height: 150upx;
+					img{
+						width:80upx;
+						height: auto;
+					}
+					.handle-text{
+					  font-size: 26upx;
+					  font-weight: bold;
+					  line-height: 1.1;
+					  letter-spacing: 1px;
+					  color: #c1a374;
+					  margin-top: 10upx;
+					}
+				}
+			}
+			.right{
+				width: 60%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-between;
+				 img{
+					 margin-top: 30upx;
+					 width: 230upx;
+					 height: auto;
+				 }
+				 .balance{
+					 display: flex;
+					 flex-direction: column;
+					 align-items: center;
+					 padding-bottom: 40upx;
+				 }
+			}
+		}
+	}
 	 .swiper{
 		 height: 20vh;
 		 ::v-deep .uni-swiper__warp,.swiper-box{
@@ -159,7 +278,7 @@
 		 	}
 		 }
 	 }
-	
+	.user-header{}
 	 .version-dialog{
 	 	background-image: url('../../static/images/index/poup-bg.webp');
 	 	background-size: 100%;

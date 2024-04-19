@@ -45,7 +45,7 @@
 						</uni-easyinput>
 					</uni-forms-item>
 				</uni-forms>
-				<button class="btn" @click="submit">{{$t('btn.ok.text')}}</button>
+				<button class="btn" @click="submit">{{$t('btn.update.text')}}</button>
 			</view>
 		</view>
 	</view>

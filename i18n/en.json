@@ -27,9 +27,15 @@
 	"page.home.title":"HOME",
 	"version.dialog.title":"NEW VERSION IS AVAILABLE",
 	"version.dialog.content":"UPDATE NOW",
-	
+	"home.hello.text":"HELLO",
+	"home.welcome.text":"WELCOME TO ALOHA FOOTBALL",
+	"home.wallet.text":"WALLET",
+	"home.recharge.text":"RECHARGE",
+	"home.withdraw.text":"WITHDRAW",
+	"home.balance.text":"BALANCE",
   
   "btn.ok.text":"OKAY",
+  "btn.update.text":"UPDATE",
   "btn.yes.text":"YES",
   "btn.no.text":"NO",
   "ruls.email":"Please input the correct email address",

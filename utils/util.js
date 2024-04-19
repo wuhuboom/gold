@@ -41,3 +41,7 @@ export const divide100 = (num) =>{
 		return 0;
 	}
 }
+export const getAmount = (money) => {
+  let res = (Number(money) / 10000).toFixed(4);
+  return Number(res);
+};
