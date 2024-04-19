@@ -104,6 +104,13 @@
 						}
 					}
 				})
+			},
+			cancelOrder(id){
+				let url = `/player/unbet?betId=${id}`
+				this.$http.get(url,res=>{
+					this.getRefresherrefresh()
+					this.$store.dispatch('getUserInfo')
+				})
 			}
 		}
 			 
