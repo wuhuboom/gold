@@ -5,7 +5,7 @@ import Vue from 'vue'
 import store from './store'
 import VueI18n from "vue-i18n"; // v8.x
 // 国际化 json 文件,
-import messages from "./i18n/index";
+import messages from "./locale/index.js";
 import Req from './http'
 import './uni.promisify.adaptor'
 

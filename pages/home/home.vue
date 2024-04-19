@@ -216,7 +216,7 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			height: 500upx;
+			height: 330upx;
 			.left{
 				width: 40%;
 				height: 100%;
@@ -228,9 +228,8 @@
 					display: flex;
 					flex-direction: column;
 					align-items: center;
-					height: 150upx;
 					img{
-						width:80upx;
+						width:60upx;
 						height: auto;
 					}
 					.handle-text{
@@ -251,7 +250,6 @@
 				align-items: center;
 				justify-content: space-between;
 				 img{
-					 margin-top: 30upx;
 					 width: 230upx;
 					 height: auto;
 				 }
@@ -259,7 +257,25 @@
 					 display: flex;
 					 flex-direction: column;
 					 align-items: center;
-					 padding-bottom: 40upx;
+					 .balance-title{
+						font-size: 24upx;
+						font-weight: bold;
+						line-height: 1.1;
+						letter-spacing: 1px;
+						color: #c1a374;
+					 }
+					 .balance-num{
+						width: 256upx;
+						height: 70upx;
+						line-height: 70upx;
+						margin: 6upx 58upx 24upx 22upx;
+						background-color: #c9ac7f;
+						text-align: center;
+						font-size: 28upx;
+						font-weight: bold;
+						letter-spacing: 0.65px;
+						color: #fff;
+					 }
 				 }
 			}
 		}

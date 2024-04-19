@@ -40,6 +40,22 @@
 				"enablePullDownRefresh" : false,
 				"navigationStyle":"custom"
 			}
+		},
+		{
+			"path" : "pages/match/match",
+			"style" : 
+			{
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path" : "pages/trades/trades",
+			"style" : 
+			{
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
+			}
 		}
 		// {
 		// 	"path" : "pages/user/user",
@@ -319,31 +335,34 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
-		"color": "#f5f5f5",
-		"selectedColor": "#f5f5f5",
+		"color": "#c1a374",
+		"selectedColor": "#c1a374",
 		"borderStyle": "white",
 		"backgroundColor": "#dde0e8",
 		"list": [
 			{
 				"pagePath": "pages/home/home",
-				"selectedIconPath": "static/images/tabbar/order.webp",
+				"selectedIconPath": "static/images/tabbar/homeAction.webp",
+				"iconPath": "static/images/tabbar/home.webp",
+				"text": "%page.home.title%"
+			},
+			{
+				"pagePath": "pages/trades/trades",
+				"selectedIconPath": "static/images/tabbar/orderActive.webp",
 				"iconPath": "static/images/tabbar/order.webp",
-				"text": "ORDER"
+				"text": "%page.trades.title%"
 			},
 			{
-				"pagePath": "pages/invest/invest",
-				"selectedIconPath": "static/images/tabbar/investActive.png",
-				"iconPath": "static/images/tabbar/invest.png"
-			},
-			{
-				"pagePath": "pages/information/information",
-				"selectedIconPath": "static/images/tabbar/infoActive.png",
-				"iconPath": "static/images/tabbar/info.png"
+				"pagePath": "pages/match/match",
+				"selectedIconPath": "static/images/tabbar/matchActive.webp",
+				"iconPath": "static/images/tabbar/match.webp",
+				"text": "%page.match.title%"
 			},
 			{
 				"pagePath": "pages/user/user",
-				"selectedIconPath": "static/images/tabbar/userActive.png",
-				"iconPath": "static/images/tabbar/user.png"
+				"selectedIconPath": "static/images/tabbar/meActive.webp",
+				"iconPath": "static/images/tabbar/me.webp",
+				"text": "%page.me.title%"
 			}
 			
 		]
