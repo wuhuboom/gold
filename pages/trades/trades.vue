@@ -36,7 +36,7 @@
 							<view class="detail-row">{{$t('trade.item.stake')}}:{{getAmount(item.betMoney)}}</view>
 							<view class="detail-row">{{$t('trade.item.profit')}}:{{getAmount(item.winningAmount)}}</view>
 						 </view>
-						 <view class="cancel-btn">{{$t('trade.item.cancelBtn')}}</view>
+						 <view class="cancel-btn" @click="cancelOrder(item.id)">{{$t('trade.item.cancelBtn')}}</view>
 					 </view>
 					 
 				 </view>
