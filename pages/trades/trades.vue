@@ -68,6 +68,9 @@
 		},
 		methods: {
 			scrolltolower() {
+				if(this.search.pageNo > this.totalPage){
+					return
+				}
 				this.loadData()
 			},
 			//下拉刷新
@@ -79,9 +82,9 @@
 				this.loadData()
 			},
 			loadData(){
-				// let url = '/player/bets/today'
-				let url = '/player/bets'
-				this.search.time = 5
+				let url = '/player/bets/today'
+				// let url = '/player/bets'
+				// this.search.time = 5
 				this.$http.post(url,this.search,res=>{
 					if(res.code==200){
 						let datas = res.data.results || []
@@ -100,6 +103,7 @@
 							} else {
 							    this.search.pageNo = this.search.pageNo + 1
 							}
+							console.log(this.search)
 							this.refresherTriggered = false
 						}
 					}

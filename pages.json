@@ -56,16 +56,41 @@
 				"enablePullDownRefresh" : false,
 				"navigationStyle":"custom"
 			}
+		},
+		{
+			"path" : "pages/options/options",
+			"style" : 
+			{
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path" : "pages/user/user",
+			"style" : 
+			{
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path" : "pages/user/withdraw",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path" : "pages/user/recharge",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
+			}
 		}
-		// {
-		// 	"path" : "pages/user/user",
-		// 	"style" : 
-		// 	{
-		// 		"navigationBarTitleText" : "",
-		// 		"enablePullDownRefresh" : false,
-		// 		"navigationStyle":"custom"
-		// 	}
-		// },
 		// {
 		// 	"path" : "pages/user/invite",
 		// 	"style" : 
@@ -138,15 +163,7 @@
 		// 		"navigationStyle":"custom"
 		// 	}
 		// },
-		// {
-		// 	"path" : "pages/user/recharge",
-		// 	"style" : 
-		// 	{
-		// 		"navigationBarTitleText" : "",
-		// 		"enablePullDownRefresh" : false,
-		// 		"navigationStyle":"custom"
-		// 	}
-		// },
+		
 		// {
 		// 	"path" : "pages/user/inrecord",
 		// 	"style" : 
@@ -165,15 +182,7 @@
 		// 		"navigationStyle":"custom"
 		// 	}
 		// },
-		// {
-		// 	"path" : "pages/user/withdraw",
-		// 	"style" : 
-		// 	{
-		// 		"navigationBarTitleText" : "",
-		// 		"enablePullDownRefresh" : false,
-		// 		"navigationStyle":"custom"
-		// 	}
-		// },
+		
 		// {
 		// 	"path" : "pages/user/exchange",
 		// 	"style" : 
@@ -362,6 +371,12 @@
 				"pagePath": "pages/user/user",
 				"selectedIconPath": "static/images/tabbar/meActive.webp",
 				"iconPath": "static/images/tabbar/me.webp",
+				"text": "%page.me.title%"
+			},
+			{
+				"pagePath": "pages/options/options",
+				"selectedIconPath": "static/images/tabbar/featuresActive.webp",
+				"iconPath": "static/images/tabbar/features.webp",
 				"text": "%page.me.title%"
 			}
 			

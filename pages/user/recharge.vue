@@ -120,47 +120,7 @@
 	width: 670upx;
 	min-height: 100vh;
 	padding: 0upx 40upx;
-	.title{
-		color: #fff;
-		font-size: 36upx;
-		margin-top: 20upx;
-	}
-	.payways{
-		margin-top: 20upx;
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-		.way-item{
-			 display: flex;
-			 flex-direction: column;
-			 align-items: center;
-			 justify-content: center;
-			 height: 170upx;
-			 width: 320upx;
-			 border-radius: 30upx;
-			 border: 1px solid $fontColor;
-			 background-color: #002c2c;
-			 margin-bottom: 20upx;
-			 position: relative;
-			 image{
-				 width: 60upx;
-				 height: 60upx;
-			 }
-			 .way-item-text{
-				 font-size: 32upx;
-				 color: #fff;
-			 }
-			 .active{
-				 background-image: url('../../static/images/user/check.webp');
-				 background-size: 100% 100%;
-				 width: 50upx;
-				 height: 40upx;
-				 position: absolute;
-				 top: 0upx;
-				 right: 0upx;
-			 }
-		}
-	}
+	 
 	.form{
 		width: 670upx;
 		margin-top: 20upx;
