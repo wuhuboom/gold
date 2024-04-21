@@ -58,6 +58,8 @@
 	"withdraw.form.actualmount":"ACTUAL AMOUNT",
 	"withdraw.form.exchangeRate":"Exchange rate",
 	"withdraw.form.paypassword":"PAY PASSWORD",
+	"withdraw.form.bind":"BIND",
+	"withdraw.form.address":"WITHDRAW ADDRESS",
 	
 	
   "page.home.title":"HOME",

@@ -70,11 +70,11 @@
 			},
 			placeholder: {
 				type: String,
-				default: '请选择'
+				default: 'Please Select'
 			},
 			emptyTips: {
 				type: String,
-				default: '无选项'
+				default: 'No Data'
 			},
 			clear: {
 				type: Boolean,
@@ -115,9 +115,9 @@
 		computed: {
 			typePlaceholder() {
 				const text = {
-					'opendb-stat-app-versions': '版本',
-					'opendb-app-channels': '渠道',
-					'opendb-app-list': '应用'
+					'opendb-stat-app-versions': 'version',
+					'opendb-app-channels': 'Channel',
+					'opendb-app-list': 'App'
 				}
 				const common = this.placeholder
 				const placeholder = text[this.collection]

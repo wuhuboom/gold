@@ -13,10 +13,10 @@
 						<uni-easyinput type="text" v-model="formData.username" :placeholder="$t('register.form.username')" />
 					</uni-forms-item>
 					<uni-forms-item  name="newPwd">
-						<uni-easyinput type="newPwd" v-model="formData.newPwd" :placeholder="$t('register.form.pwd')" />
+						<uni-easyinput type="password" v-model="formData.newPwd" :placeholder="$t('register.form.pwd')" />
 					</uni-forms-item>
 					<uni-forms-item name="twicePwd">
-						<uni-easyinput type="newPwd" v-model="formData.twicePwd" :placeholder="$t('register.form.pwd.again')" />
+						<uni-easyinput type="password" v-model="formData.twicePwd" :placeholder="$t('register.form.pwd.again')" />
 					</uni-forms-item>
 					<uni-forms-item name="vertifyType">
 						<view class="select-tips">{{$t('forget.select.tips')}}</view>
