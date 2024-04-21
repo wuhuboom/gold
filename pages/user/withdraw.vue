@@ -48,7 +48,7 @@
 			 			<uni-data-select v-model="formData.vertifyType" :localdata="vertifyTypes" :clear="false"></uni-data-select>
 			 		</view>
 			 	</uni-forms-item>
-			 	<uni-forms-item :label="$t('register.form.code')"  name="code" >
+			 	<uni-forms-item :label="$t('register.form.code')"  name="code" v-if="formData.vertifyType > 0">
 			 		<uni-easyinput type="text" v-model="formData.code" :placeholder="$t('register.form.code')" >
 			 			<template #right>
 			 				<view v-if="!isSendCode" @click="sendCode" class="sendCode">{{$t('register.sendBtn')}}</view>
@@ -116,6 +116,9 @@
 			this.$store.dispatch('getUserInfo')
 			this.user = uni.getStorageSync('accountInfo')
 			this.loadPayWays()
+			this.getBankList()
+			this.getUsdtList()
+			this.getWalletList()
 		},
 		methods: {
 			changeWay(val){
@@ -123,9 +126,30 @@
 				this.sectItem = this.payways.find(item=>{
 					return item.type===val
 				})
+				 this.curWalletList = []
+				let type = this.sectItem.type
+				 if(type==1){
+					 this.curWalletList = this.bankList
+				 }else if(type==2){
+					 this.curWalletList = this.usdtList
+				 }else if(type==4){
+					 this.curWalletList = this.walletList
+				 }
+				 this.formatCurrWalletList()
 			},
 			addWalletPage(){
-				
+				let path = ''
+				let type = this.sectItem.type
+				if(type==1){
+					path="./addBankCard"		 
+				}else if(type==2){
+					path="./addUsdtAddress"				 
+				}else if(type==4){
+					path="./addWallet"
+				}
+				uni.navigateTo({
+					url:path
+				})
 			},
 			goBack(){
 				let path = ""
@@ -151,14 +175,6 @@
 					}
 					this.sectItem = this.payways[0] || {}
 					this.formData.vertifyType = this.sectItem.codeMode || 0
-					let type = this.sectItem.type
-					 if(type==1){
-						 this.getBankList()
-					 }else if(type==2){
-						 this.getUsdtList()
-					 }else if(type==4){
-						 this.getWalletList()
-					 }
 				})
 			},
 			formatCurrWalletList(){
