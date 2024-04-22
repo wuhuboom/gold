@@ -75,6 +75,8 @@
 	"wallet.form.realName":"REAL NAME",
 	"wallet.form.type":"TYPE",
 	"wallet.form.walletId":"WALLET ID",
+	"recharge.confirm.notSelectPayMet.text": "Please select a payment method.",
+	"recharge.form.method":"RECHARGE METHOD",
 	
 	
   "page.home.title":"HOME",

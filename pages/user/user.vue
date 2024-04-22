@@ -74,7 +74,7 @@
 				user:{},
 				menus:[
 					{name:this.$t('home.withdraw.text'),icon:'../../static/images/home/Group23.webp',path:'./withdraw?type=user'},
-					{name:this.$t('home.recharge.text'),icon:'../../static/images/home/Group20.webp',path:'./recharge'},
+					{name:this.$t('home.recharge.text'),icon:'../../static/images/home/Group20.webp',path:'./recharge?type=user'},
 					{name:this.$t('home.signout.text'),icon:'../../static/images/user/Group 31.webp',path:'./signout'}
 				],
 				shareLink:'',

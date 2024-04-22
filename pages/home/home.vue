@@ -30,18 +30,22 @@
 			</view>
 			<view class="user-content">
 				<view class="left">
-					<view class="handle-item">
+					<view class="handle-item" v-for="(item,index) in menus" :key="index" @click="goPage(item.path)">
+						<img class="menu-icon" :src="item.icon"/>
+					    <view class="handle-text">{{item.name}}</view>
+					</view>
+					<!-- <view class="handle-item">
 						<img src="../../static/images/home/Group17.webp"></img>
 						<view class="handle-text">{{$t('home.wallet.text')}}</view>
 					</view>
-					<view class="handle-item">
+					<view class="handle-item" @click="">
 						<img src="../../static/images/home/Group20.webp"></img>
 						<view class="handle-text">{{$t('home.recharge.text')}}</view>
 					</view>
 					<view class="handle-item">
 						<img src="../../static/images/home/Group23.webp"></img>
 						<view class="handle-text">{{$t('home.withdraw.text')}}</view>
-					</view>
+					</view> -->
 				</view>
 				<view class="right">
 					<img src="../../static/images/home/profile.webp">
@@ -91,7 +95,12 @@
 				curVersion:0,
 				showProcess:false,
 				process:0,
-				perInfo:{}
+				perInfo:{},
+				menus:[
+					{name:this.$t('home.wallet.text'),icon:'../../static/images/home/Group17.webp',path:'/pages/user/wallet'},
+					{name:this.$t('home.recharge.text'),icon:'../../static/images/home/Group20.webp',path:'/pages/user/recharge?type=home'},
+					{name:this.$t('home.withdraw.text'),icon:'../../static/images/home/Group23.webp',path:'/pages/user/withdraw?type=home'}
+				]
 			}
 		},
 		onShow() {
@@ -103,6 +112,11 @@
 			this.perInfo = uni.getStorageSync('accountInfo')
 		},
 		methods: {
+			goPage(path){
+				uni.navigateTo({
+					url:path
+				})
+			},
 			async yesUpdate(){
 				uni.setStorageSync('cur_version',this.curVersion)
 				this.showProcess = true
