@@ -30,7 +30,7 @@
 						</template>
 					</uni-easyinput>
 					<view class="form-input-tips">
-						{{$t('withdraw.form.limit')}}:{{getAmount(user.balance)}}
+						{{$t('withdraw.form.limit')}}:{{sectItem.withdrawMin}}-{{sectItem.withdrawMax}}
 					</view>
 				</uni-forms-item>
 			 	<uni-forms-item :label="$t('withdraw.form.actualmount')" name="actualmount">
@@ -45,11 +45,11 @@
 			 	</uni-forms-item>
 			 	<uni-forms-item :label="$t('forget.select.tips')" name="vertifyType" v-if="formData.vertifyType==3">
 			 		<view class="type-select">
-			 			<uni-data-select v-model="formData.vertifyType" :localdata="vertifyTypes" :clear="false"></uni-data-select>
+			 			<uni-data-select v-model="vertifyTypeIndex" :localdata="vertifyTypes" :clear="false"></uni-data-select>
 			 		</view>
 			 	</uni-forms-item>
-			 	<uni-forms-item :label="$t('register.form.code')"  name="code" v-if="formData.vertifyType > 0">
-			 		<uni-easyinput type="text" v-model="formData.code" :placeholder="$t('register.form.code')" >
+			 	<uni-forms-item :label="vertifyTypeIndex==0 ? $t('forget.emailVerifiCode'):$t('forget.phoneVerifiCode')"  name="code" v-if="formData.vertifyType > 0">
+			 		<uni-easyinput type="text" v-model="formData.code"  >
 			 			<template #right>
 			 				<view v-if="!isSendCode" @click="sendCode" class="sendCode">{{$t('register.sendBtn')}}</view>
 			 				<view v-else class="sendCode"> {{countTime}} s</view>
@@ -74,7 +74,7 @@
 				fromType:'',
 				user:{},
 				formData:{
-					money:0,
+					money:'',
 					type:'',
 					payPwd:'',
 					usdtId:'',
@@ -86,12 +86,12 @@
 				rules: {
 					money: {
 						rules: [
-							{required: true,errorMessage: this.$t('ruls.xxx.empty',{name:this.$t('recharge.money.text')})}
+							{required: true,errorMessage: this.$t('ruls.xxx.empty',{name:this.$t('withdraw.form.enteramount')})}
 						]
 					},
 					payPwd: {
 						rules: [
-							{required: true,errorMessage: this.$t('ruls.xxx.empty',{name:this.$t('withdraw.password.text')})}
+							{required: true,errorMessage: this.$t('ruls.xxx.empty',{name:this.$t('withdraw.form.paypassword')})}
 						]
 					}
 				}, 
@@ -102,12 +102,14 @@
 					{value:1,text:this.$t('forget.phoneVerifiCode')}
 				],
 				isSendCode:false,
+				countTime:60,
 				bankList:[],
 				usdtList:[],
 				walletList:[],
 				curWalletList:[],
 				walletListIndex:-1,
 				payWayType:1,
+				vertifyTypeIndex:0,
 				isBind:false
 			}
 		},
@@ -120,7 +122,43 @@
 			this.getUsdtList()
 			this.getWalletList()
 		},
+		watch:{
+			'formData.money':{
+				handler(val){
+					if(val){
+						this.formData.actualmount = val * this.sectItem.rate
+					}
+				}
+			}
+		},
 		methods: {
+			submit(){
+				this.$refs.form.validate().then(res=>{
+					const para = {
+						type: this.sectItem.type,
+						usdtId: this.curWalletList[this.walletListIndex].id,
+						money: this.formData.money,
+						payPwd: this.formData.payPwd,
+						code:this.formData.code,
+						deviceUa:navigator.userAgent
+					}
+					this.$http.post('/player/withdrawal',para,(res=>{
+						if(res.code ==200){
+							this.formData.money = ''
+							this.formData.payPwd = ''
+							this.formData.code = ''
+							uni.showToast({
+								title:this.$t('oper.tip.success.text'),
+								duration:2000,
+							})
+						}else{
+							this.isSendCode = false
+						}
+					}))
+				}).catch(err =>{
+					console.log( err);
+				})
+			},
 			changeWay(val){
 				this.payWayType = val
 				this.sectItem = this.payways.find(item=>{
@@ -175,6 +213,11 @@
 					}
 					this.sectItem = this.payways[0] || {}
 					this.formData.vertifyType = this.sectItem.codeMode || 0
+					if(this.formData.vertifyType==1){
+						this.vertifyTypeIndex = 1
+					}else if(this.formData.vertifyType==2){
+						this.vertifyTypeIndex = 0
+					}
 				})
 			},
 			formatCurrWalletList(){
@@ -183,6 +226,9 @@
 					item.text = item.addr
 					return item
 				})
+				if(this.curWalletList.length > 0){
+					this.walletListIndex = 0
+				}
 			},
 			getBankList(){
 				this.bankList = []
@@ -192,12 +238,12 @@
 						 res = res.data
 						 if (Array.isArray(res)) {
 							 res.forEach(item => {
-								 item.addr = maskString(item.cardNumber)
+								 item.addr = this.maskString(item.cardNumber)
 							 })
 							 this.bankList = res
 						 } else if (typeof res === 'object' && res !== null) {
 							 this.bankList = []
-							 res.addr = maskString(res.cardNumber)
+							 res.addr = this.maskString(res.cardNumber)
 							 this.bankList.push(res)
 						 }
 						 this.curWalletList = this.bankList 
@@ -242,6 +288,49 @@
 			    const maskedPart = '*'.repeat(str.length - 4);
 			    const visiblePart = str.slice(-4);
 			    return maskedPart + visiblePart;
+			},
+			sendCode(){
+				
+				if(this.vertifyTypeIndex==0){
+					this.getEmailCode()
+				}else if(this.vertifyTypeIndex==1){
+					this.getPhoneCode()
+				}
+			},
+			startCount(){
+				if(this.countTime <= 0){
+					this.countTime = 60
+					this.isSendCode = false
+				}else{
+					this.countTime--
+					setTimeout(this.startCount,1000)
+				}
+			},
+			getEmailCode(){
+				let url = '/player/mail/code'
+				this.$http.get(url,res=>{
+					if(res.code==200){
+						uni.showToast({
+							title:this.$t('register.sendCode.success'),
+							duration:2000
+						})
+						this.isSendCode = true
+						this.startCount()
+					}
+				})
+			},
+			getPhoneCode(){
+				let url = "/player/v2/phone_code/online"
+				this.$http.post(url,{},res=>{
+					if(res.code==200){
+						uni.showToast({
+							title:this.$t('register.sendCode.success'),
+							duration:2000
+						})
+						this.isSendCode = true
+						this.startCount()
+					}
+				})
 			}
 		}
 	}

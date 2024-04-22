@@ -44,4 +44,8 @@ export const divide100 = (num) =>{
 export const getAmount = (money) => {
   let res = (Number(money) / 10000).toFixed(4);
   return Number(res);
-};
+}
+export const checkBankName = (name)=>{
+  let res = /^[A-Z\s ]+$/
+  return res.test(name)
+}

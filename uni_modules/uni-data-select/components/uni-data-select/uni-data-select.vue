@@ -136,7 +136,7 @@
 			textShow(){
 				// 长文本显示
 				let text = this.current;
-				if (text.length > 10) {
+				if (text.length > 25) {
 					return text.slice(0, 25) + '...';
 				}
 				return text;

@@ -77,7 +77,6 @@
 			"path" : "pages/user/withdraw",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
 				"enablePullDownRefresh" : false,
 				"navigationStyle":"custom"
 			}
@@ -86,7 +85,6 @@
 			"path" : "pages/user/recharge",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
 				"enablePullDownRefresh" : false,
 				"navigationStyle":"custom"
 			}
@@ -95,24 +93,24 @@
 			"path" : "pages/user/addBankCard",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
 			}
 		},
 		{
 			"path" : "pages/user/addUsdtAddress",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
 			}
 		},
 		{
 			"path" : "pages/user/addWallet",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
 			}
 		}
 		// {
