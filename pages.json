@@ -399,7 +399,7 @@
 				"pagePath": "pages/options/options",
 				"selectedIconPath": "static/images/tabbar/featuresActive.webp",
 				"iconPath": "static/images/tabbar/features.webp",
-				"text": "%page.me.title%"
+				"text": "%page.option.title%"
 			}
 			
 		]
