@@ -164,13 +164,25 @@
 				})
 			},
 			goBack(){
+				// let pages = getCurrentPages()
+				// if(pages && pages.length > 1){
+				// 	let path = pages[0].route
+				// 	console.log(path)
+				// 	uni.reLaunch({
+				// 		url:path
+				// 	})
+				// }else{
+				// 	history.go(-1)
+				// }
 				let path = ""
 				if(this.fromType=='home'){
 					path = '/pages/home/home'
+				}else if(this.fromType=='wallet'){
+					path = '/pages/user/wallet'
 				}else{
 					path = '/pages/user/user'
 				}
-				uni.switchTab({
+				uni.reLaunch({
 					url: path
 				})
 			}
