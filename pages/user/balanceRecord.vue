@@ -226,8 +226,8 @@
 			}
 		},
 		onLoad() {
-			this.getCurrency()
-			// this.loadData()
+			// this.getCurrency()
+			this.loadData()
 		},
 		methods: {
 			chooseItem(item){
@@ -266,6 +266,7 @@
 			   return res.label;
 			},
 			 scrolltolower() {
+				 if(this.search.pageNo >= this.totalPage) return
 			 	this.loadData()
 			 },
 			 //下拉刷新
@@ -277,10 +278,10 @@
 			 	this.loadData()
 			 },
 			 loadData(){
-				 const cid = this.selectItem.cid
-				 if(cid){
-					 this.search.cid = cid
-				 }
+				 // const cid = this.selectItem.cid
+				 // if(cid){
+					//  this.search.cid = cid
+				 // }
 			 	this.$http.post("/player/balance_change",this.search,res => {
 			 		if(res.code == 200){
 			 			this.records = [...this.records,...res.data.results]

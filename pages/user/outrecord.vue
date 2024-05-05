@@ -124,6 +124,7 @@
 			   return res;
 			},
 			 scrolltolower() {
+				 if(this.search.pageNo >= this.totalPage) return
 			 	this.loadData()
 			 },
 			 //下拉刷新
@@ -149,9 +150,18 @@
 			 	})
 			 },
 			goBack(){
-				uni.navigateTo({
-					url:'./withdraw'
-				})
+				let pages = getCurrentPages()
+				if(pages && pages.length > 1){
+					let path = pages[pages.length - 2].route
+					if(!path.startsWith('/')){
+						path = '/' + path
+					}
+					uni.reLaunch({
+						url:path
+					})
+				}else{
+					history.go(-1)
+				}
 			}
 		}
 	}
@@ -181,6 +191,9 @@
 					text-align: center;
 					height: 50upx;
 					line-height: 50upx;
+					margin-right: 20upx;
+					padding-left: 10upx;
+					padding-right: 10upx;
 				}
 				.active{
 					background-color: #01cecf;
