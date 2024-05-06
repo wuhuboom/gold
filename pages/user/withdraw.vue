@@ -7,7 +7,13 @@
 		 	{{$t('page.withdraw.title')}}
 		 </view>
 		 <view class="user-balance">
-			 <view class="balance-header">{{$t('home.balance.text')}}</view>
+			 <view class="balance-header">
+				<view>{{$t('home.balance.text')}}</view>
+				<view class="history" @click="showHistory">
+					<image src="../../static/images/wallet/Path 121.webp" mode="aspectFill"></image>
+					<view class="history-text">{{$t('withdraw.history.text')}}</view>
+				</view>
+			 </view>
 			 <view class="balance-num">{{getAmount(user.balance || 0)}}</view>
 		 </view>
 		 <view class="form">
@@ -108,19 +114,24 @@
 				walletList:[],
 				curWalletList:[],
 				walletListIndex:-1,
-				payWayType:1,
+				payWayType:2,
 				vertifyTypeIndex:0,
 				isBind:false
 			}
 		},
 		onLoad(option) {
+			console.log(option)
 			this.fromType = option.type
 			this.$store.dispatch('getUserInfo')
 			this.user = uni.getStorageSync('accountInfo')
 			this.loadPayWays()
-			this.getBankList()
-			this.getUsdtList()
-			this.getWalletList()
+			if(this.payWayType==1){
+				this.getBankList()
+			}else if(this.payWayType==2){
+				this.getUsdtList()
+			}else if(this.payWayType==4){
+				this.getWalletList()
+			}
 		},
 		watch:{
 			'formData.money':{
@@ -132,6 +143,11 @@
 			}
 		},
 		methods: {
+			showHistory(){
+				uni.navigateTo({
+					url:'/pages/user/withdrawLog'
+				})
+			},
 			submit(){
 				this.$refs.form.validate().then(res=>{
 					const para = {
@@ -161,19 +177,19 @@
 			},
 			changeWay(val){
 				this.payWayType = val
+				
 				this.sectItem = this.payways.find(item=>{
 					return item.type===val
 				})
 				 this.curWalletList = []
 				let type = this.sectItem.type
 				 if(type==1){
-					 this.curWalletList = this.bankList
+					 this.getBankList()
 				 }else if(type==2){
-					 this.curWalletList = this.usdtList
+					 this.getUsdtList()
 				 }else if(type==4){
-					 this.curWalletList = this.walletList
+					 this.getWalletList()
 				 }
-				 this.formatCurrWalletList()
 			},
 			addWalletPage(){
 				let path = ''
@@ -210,14 +226,18 @@
 							item.value = item.type
 							return item
 						})
+						
+						this.sectItem = this.payways.find(item=>{
+							return item.type=== this.payWayType
+						})
+						this.formData.vertifyType = this.sectItem.codeMode || 0
+						if(this.formData.vertifyType==1){
+							this.vertifyTypeIndex = 1
+						}else if(this.formData.vertifyType==2){
+							this.vertifyTypeIndex = 0
+						}
 					}
-					this.sectItem = this.payways[0] || {}
-					this.formData.vertifyType = this.sectItem.codeMode || 0
-					if(this.formData.vertifyType==1){
-						this.vertifyTypeIndex = 1
-					}else if(this.formData.vertifyType==2){
-						this.vertifyTypeIndex = 0
-					}
+					
 				})
 			},
 			formatCurrWalletList(){
@@ -353,6 +373,27 @@
 		  letter-spacing: 1px;
 		  text-align: center;
 		  color: #c1a374;
+		  position: relative;
+		  .history{
+			  position: absolute;
+			  top: 3upx;
+			  right: -90upx;
+			  display: flex;
+			  align-items: center;
+			  image{
+				  width: 27upx;
+				  height: 22upx;
+				  margin-left: 20upx;
+			  }
+			  .history-text{
+				  margin-left: 10upx;
+				  font-size: 20upx;
+				  font-weight: bold;
+				  line-height: 2;
+				  letter-spacing: 1px;
+				  color: #82502b;
+			  }
+		  }
 		}
 		.balance-num{
 		  width: 260upx;

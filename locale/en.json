@@ -60,6 +60,7 @@
 	"withdraw.form.paypassword":"PAY PASSWORD",
 	"withdraw.form.bind":"BIND",
 	"withdraw.form.address":"WITHDRAW ADDRESS",
+	"withdraw.history.text":"HISTORY",
 	"card.form.bankid":"SELECT BANK",
 	"card.form.address":"NEW ADDRESS",
 	"card.form.state":"WHICH STATE WAS THE ACCOUNT OPENED IN (OPTIONAL)",
@@ -90,6 +91,11 @@
 	"wallet.transfer.money":"AMOUNT",
 	"wallet.transfer.pwd":"PAYMENT PASSWORD",
 	"wallet.transfer.self.tips":"TRANSFER MONEY FROM WALLET ACCOUNT TO FOOTBALL ACCOUNT",
+	"match.records.today.text": "Today",
+	"match.records.yes.text": "Yesterday",
+	"match.records.nearly7.text": "Nearly 7 day",
+	"match.records.nearly10.text": "Nearly 10 day",
+	"match.records.nearly30.text": "Nearly 30 day",
 	
 	
 	
@@ -104,6 +110,7 @@
   "page.addcard.title":"ADD BANK CARD",
   "page.addusdt.title":"ADD USDT ADDRESS",
   "page.addwallet.title":"ADD WALLET",
+  "page.withdrawlog.title":"WITHDRAW HISTORY",
   "btn.ok.text":"OKAY",
   "btn.confirm.text":"CONFIRM",
   "btn.update.text":"UPDATE",
@@ -306,6 +313,7 @@
   "backapi.self.safe.bill.data.date.text": "date",
   "backapi.self.safe.bill.data.type.text": "type",
   "backapi.self.safe.bill.data.money.text": "amount",
+  "backapi.self.safe.bill.data.status.text": "status",
   "backapi.self.safe.bill.data.opera.text": "operate",
   "backapi.self.safe.bill.data.choose.type.all.text": "all",
   "backapi.self.safe.transfer.text": "transfer(subordinate)",
