@@ -96,6 +96,15 @@
 	"match.records.nearly7.text": "Nearly 7 day",
 	"match.records.nearly10.text": "Nearly 10 day",
 	"match.records.nearly30.text": "Nearly 30 day",
+	"withdraw.record.center.show.detail.type.bank.text": "Bank Card",
+	"withdraw.record.center.show.detail.usdt.bank.text": "USDT",
+	"withdraw.record.status.need.audit.text": "Pending review",
+	"withdraw.record.status.already.audit.text": "Audited",
+	"withdraw.record.status.withdraw.success.text": "Withdrawal success",
+	"withdraw.record.status.paid.in.text": "Payment in process",
+	"withdraw.record.status.operation.in.text": "Chargeback",
+	"withdraw.record.status.redo.in.text": "Reversal",
+	"withdraw.record.status.fail.text": "Reason",
 	
 	
 	
