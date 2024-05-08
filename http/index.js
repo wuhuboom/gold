@@ -38,12 +38,15 @@ http.beforeResponseFilter = function (res) {
 			return res
 		}else if(res.code == 103 || res.code == 105){
 			const data = res.data;
+			let errMsg = ['withdrawalRisk']
 			if(data.length > 0){
-				uni.showToast({
-					title:vueInstance.$t('backapi.'+data[0].msgKey),
-					duration:2000,
-					icon:'error'
-				})
+				if(!errMsg.includes(data[0].msgKey)){
+					uni.showToast({
+						title:vueInstance.$t('backapi.'+data[0].msgKey),
+						duration:2000,
+						icon:'error'
+					})
+				}
 			}
 			
 		}else if(res.code==401 || res.code==402 || res.code==403) {

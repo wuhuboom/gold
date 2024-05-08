@@ -220,7 +220,32 @@
 							this.formData.code = ''
 							this.$refs.tipDialog.open()
 						}else if(res.code ==103){
-							
+							res = res.data[0]
+							 if(res.msgKey == 'withdrawalRisk'){
+								this.riskCode = res.data
+								this.submitted = res.submitted
+								if(this.submitted === 1){
+									uni.showToast({
+									    title: this.$t("withdraw.risk.waitAudit"),
+									    icon: 'none',
+									    duration: 5000,
+									});
+									return
+								}else{
+									let riskStatus = [2, 3, 4]
+									if (riskStatus.includes(this.riskCode)) {
+										this.$refs.riskDialog.open()
+									}
+									return
+								}
+							}else{
+								uni.showToast({
+								    title: res.withdrawalLimitMsg,
+								    icon: 'none',
+								    duration: 5000,
+								});
+								return
+							}
 						}else{
 							this.isSendCode = false
 						}
