@@ -4,7 +4,7 @@
 			 <view class="back" @click="goBack">
 			 	<uni-icons type="left" color="#b57d3c" size="22"></uni-icons>
 			 </view>
-		 	{{$t('page.withdrawlog.title')}}
+		 	{{$t('page.rechargelog.title')}}
 		 </view>
 		 <view class="search-tabs">
 			 <image src="../../static/images/wallet/Group 114.webp" mode="aspectFill" @click="subCurrent"></image>
@@ -20,44 +20,26 @@
 			 <image src="../../static/images/wallet/Group 113.webp" mode="aspectFill" @click="addCurrent"></image>
 		 </view>
 		 <uni-row class="rocord-row record-header" :gutter="2">
-			 <uni-col class="col" :span="6">{{$t('backapi.self.safe.bill.data.date.text')}}</uni-col>
+			 <uni-col class="col" :span="5">{{$t('backapi.self.safe.bill.data.date.text')}}</uni-col>
 			 <uni-col class="col" :span="6">{{$t('backapi.self.safe.bill.data.type.text')}}</uni-col>
-			 <uni-col class="col" :span="6">{{$t('backapi.self.safe.bill.data.money.text')}}</uni-col>
-			 <uni-col class="col" :span="6">{{$t('backapi.self.safe.bill.data.status.text')}}</uni-col>
+			 <uni-col class="col" :span="5">{{$t('backapi.self.safe.bill.data.money.text')}}</uni-col>
+			 <uni-col class="col" :span="8">{{$t('backapi.self.safe.bill.data.status.text')}}</uni-col>
 		 </uni-row>
 		  <scroll-view scroll-y="true" @scrolltolower="scrolltolower" style="height: 90vh;width: 750upx;"
 		          @refresherrefresh="getRefresherrefresh" :refresher-enabled="true" :refresher-triggered="refresherTriggered"
 		          refresher-background="transparent">
 		  	<uni-row class="rocord-row" v-for="(item,index) in records" :key="index" :gutter="2">
-				 <uni-col class="col col1" :span="6">{{formatDate(item.createdAt,2)}}</uni-col>
+				 <uni-col class="col col1" :span="5">{{formatDate(item.createdAt,2)}}</uni-col>
 				 <uni-col class="col col2" :span="6">{{getType(item.type)}}</uni-col>
-				 <uni-col class="col col3" :span="6">{{divide(item.money)}}</uni-col>
-				 <uni-col class="col col4" :span="6">
-					 <view class="content_item" :style="item.status === 1 ? 'color:#3d8dfe' : item.status === 2
-					     || item.status === 4 ? 'color:#279a2b' : item.status === 5 || item.status === 6 ?
-					     'color:#b326e1' : item.status === 3 ? 'color:red' : 'color:#fff'">
+				 <uni-col class="col col3" :span="5">{{divide(item.money)}}</uni-col>
+				 <uni-col class="col col4" :span="8">
+					<view class="content_item" :style="item.status === 2
+					    || item.status === 3 ? 'color:#00ff65' : item.status === 4 ?
+					    'color:red' : 'color:#fff'">
 					     {{ getStatusList(item.status) }}
 					 </view>
 				 </uni-col>
 		  	</uni-row>
-			<uni-row class="rocord-row" :gutter="2">
-				 <uni-col class="col col1" :span="6">2024-05-01</uni-col>
-				 <uni-col class="col col2" :span="6">{{getType(1)}}</uni-col>
-				 <uni-col class="col col3" :span="6">12356</uni-col>
-				 <uni-col class="col col4" :span="6">{{getStatusList(2)}}</uni-col>
-			</uni-row>
-			<uni-row class="rocord-row" :gutter="2">
-				 <uni-col class="col col1" :span="6">2024-05-01</uni-col>
-				 <uni-col class="col col2" :span="6">{{getType(1)}}</uni-col>
-				 <uni-col class="col col3" :span="6">12356</uni-col>
-				 <uni-col class="col col4" :span="6">{{getStatusList(2)}}</uni-col>
-			</uni-row>
-			<uni-row class="rocord-row" :gutter="2">
-				 <uni-col class="col col1" :span="6">2024-05-01</uni-col>
-				 <uni-col class="col col2" :span="6">{{getType(1)}}</uni-col>
-				 <uni-col class="col col3" :span="6">12356</uni-col>
-				 <uni-col class="col col4" :span="6">{{getStatusList(2)}}</uni-col>
-			</uni-row>
 		  </scroll-view>
 	</view>
 </template>
@@ -88,43 +70,31 @@
 				],
 				current:0,
 				typeList: [{
-				    nameStr: this.$t('withdraw.record.center.show.detail.type.bank.text'),
+				    nameStr: this.$t("dropdown.billing.all.title.text"),
+				    valueNum: 0
+				}, {
+				    nameStr: this.$t('dropdown.billing.income.online.recharge.text1'),
 				    valueNum: 1
 				}, {
-				    nameStr: this.$t('withdraw.record.center.show.detail.usdt.bank.text'),
+				    nameStr: this.$t('dropdown.billing.income.offline.recharge.text1'),
 				    valueNum: 2
-				}, {
-				    nameStr: this.$t('backapi.self.whitdraw.type.ewallet.form.wallet.addr.text'),
-				    valueNum: 4
 				}],
 				statusList: [{
-				    nameStr: this.$t('withdraw.record.status.need.audit.text'),
+				    nameStr: this.$t('dropdown.billing.all.title.text'),
+				    valueNum: 0
+				}, {
+				    nameStr: this.$t('recharge.record.status.pendding.text'),
 				    valueNum: 1
 				}, {
-				    nameStr: this.$t('withdraw.record.status.already.audit.text'),
+				    nameStr: this.$t('recharge.record.status.paid.text'),
 				    valueNum: 2
 				}, {
-				    nameStr: this.$t('withdraw.record.status.fail.text'),
+				    nameStr: this.$t('recharge.record.status.scored.text'),
 				    valueNum: 3
 				}, {
-				    nameStr: this.$t('withdraw.record.status.withdraw.success.text'),
+				    nameStr: this.$t('recharge.record.status.pay.timeout.text'),
 				    valueNum: 4
-				}, {
-				    nameStr: this.$t('withdraw.record.status.paid.in.text'),
-				    valueNum: 5
-				}, {
-				    nameStr: this.$t('backapi.self.pay.failed.text'),
-				    valueNum: 6
-				}, {
-				    nameStr: this.$t('withdraw.record.status.operation.in.text'),
-				    valueNum: 7
-				}, {
-				    nameStr: this.$t('withdraw.record.status.redo.in.text'),
-				    valueNum: 8
-				}, {
-				    nameStr: this.$t('backapi.self.pay.failed.text'),
-				    valueNum: 9
-				}],
+				}]
 				 
 			}
 		},
@@ -151,6 +121,7 @@
 				this.search.time = this.swipers[detail.current].time
 				this.search.pageNo = 1
 				this.records = []
+				// this.loadData()
 				setTimeout(this.loadData,300)
 			},
 			scrolltolower() {
@@ -166,7 +137,7 @@
 				this.loadData()
 			},
 			loadData(){
-				this.$http.post("/player/withdrawal_log",this.search,res => {
+				this.$http.post("/player/recharge_log",this.search,res => {
 					if(res.code == 200){
 						this.records = [...this.records,...res.data.results]
 						this.totalPage = res.data.totalPage;
@@ -195,9 +166,6 @@
 				let pages = getCurrentPages()
 				if(pages && pages.length > 1){
 					let path = pages[pages.length-2].route
-					if(!path.startsWith("/")){
-						path = "/" + path
-					}
 					uni.reLaunch({
 						url:path
 					})
@@ -253,7 +221,7 @@
 		 padding: 20upx;
 		 text-transform: uppercase;
 		 .col{
-			 text-align: center;
+			 
 			 font-size: 20upx;
 			 font-weight: bold;
 			 letter-spacing: 1px;

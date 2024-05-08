@@ -160,6 +160,22 @@
 				"enablePullDownRefresh" : false,
 				"navigationStyle":"custom"
 			}
+		},
+		{
+			"path" : "pages/user/rechargeLog",
+			"style" : 
+			{
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path" : "pages/user/balance",
+			"style" : 
+			{
+				"enablePullDownRefresh" : false,
+				"navigationStyle":"custom"
+			}
 		}
 	],
 	"globalStyle": {

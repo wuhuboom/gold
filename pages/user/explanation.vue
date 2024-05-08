@@ -63,8 +63,9 @@
 		  }
 		  .tips-item-content{
 			  width: 500upx;
-			  font-size: 26upx;
-			  color: #cfa05e;
+			  font-size: 24upx;
+			  font-weight: bold;
+			  color: #c1a374;
 		  }
 	  }
 	}

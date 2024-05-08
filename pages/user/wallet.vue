@@ -45,6 +45,7 @@
 					{name:this.$t('wallet.menus1.text'),sub:this.$t('wallet.menus1.sub.text'),icon:'../../static/images/wallet/Group 103.webp',path:'./transferSub'},
 					{name:this.$t('wallet.menus2.text'),sub:this.$t('wallet.menus2.sub.text'),icon:'../../static/images/wallet/Group 105.webp',path:'./transferSelf'},
 					{name:this.$t('wallet.menus3.text'),icon:'../../static/images/wallet/Group 96.webp',path:'./recharge?type=wallet'},
+					{name:this.$t('wallet.menus6.text'),icon:'../../static/images/wallet/Group 119.webp',path:'./balance'},
 					{name:this.$t('wallet.menus4.text'),icon:'../../static/images/wallet/Group 107.webp',path:'./explanation'},
 					{name:this.$t('wallet.menus5.text'),icon:'../../static/images/wallet/Group 109.webp',path:'./bilingDetails'}
 				]

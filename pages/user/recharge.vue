@@ -7,7 +7,13 @@
 		 	{{$t('page.recharge.title')}}
 		 </view>
 		 <view class="user-balance">
-			 <view class="balance-header">{{$t('home.balance.text')}}</view>
+			 <view class="balance-header">
+					<view>{{$t('home.balance.text')}}</view>
+					<view class="history" @click="showHistory">
+						<image src="../../static/images/wallet/Path 121.webp" mode="aspectFill"></image>
+						<view class="history-text">{{$t('withdraw.history.text')}}</view>
+					</view>
+			 </view>
 			 <view class="balance-num">{{getAmount(user.balance || 0)}}</view>
 		 </view>
 		 <view class="form">
@@ -100,6 +106,11 @@
 			}
 		},
 		methods: {
+			showHistory(){
+				uni.navigateTo({
+					url:'/pages/user/rechargeLog'
+				})
+			},
 			changeChannel(val){
 				this.sectItem = this.channelList[val]
 			},
@@ -207,6 +218,27 @@
 		  letter-spacing: 1px;
 		  text-align: center;
 		  color: #c1a374;
+		  position: relative;
+		  .history{
+		  			  position: absolute;
+		  			  top: 3upx;
+		  			  right: -90upx;
+		  			  display: flex;
+		  			  align-items: center;
+		  			  image{
+		  				  width: 27upx;
+		  				  height: 22upx;
+		  				  margin-left: 20upx;
+		  			  }
+		  			  .history-text{
+		  				  margin-left: 10upx;
+		  				  font-size: 20upx;
+		  				  font-weight: bold;
+		  				  line-height: 2;
+		  				  letter-spacing: 1px;
+		  				  color: #82502b;
+		  			  }
+		  }
 		}
 		.balance-num{
 		  width: 260upx;
