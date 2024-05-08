@@ -66,14 +66,22 @@
 					<uni-easyinput type="password" v-model="formData.payPwd" />
 				</uni-forms-item>
 			 </uni-forms>
-			 <button class="btn" @click="submit">{{$t('page.withdraw.title')}}</button>
+			 <button class="btn" @click="submitPre">{{$t('page.withdraw.title')}}</button>
 		 </view>
+		<popup-dialog ref="tipDialog" :title="$t('withdraw.success.title.text')" :content="$t('withdraw.success.content.text')" @confirm="closeTip"></popup-dialog>
+		<popup-dialog ref="vipClearDialog"  :content="$t('withdraw.clearvip.tip.text')" @confirm="submit" :show-cancel="true"></popup-dialog>
+		<popup-dialog ref="vipCountDialog"  :content="$t('withdraw.vipcount.tip.text',{level:user.vipLevel,count:wiClearVipCount})" @confirm="submit" :show-cancel="true"></popup-dialog>
+		<popup-dialog ref="riskDialog" :title="$t('withdraw.risk.warning')" :content="$t('withdraw.risk.content')" @confirm="jumpIdcard"></popup-dialog>
 	</view>
 </template>
 
 <script>
+	import PopupDialog from '@/components/popup-dialog.vue'
 	import {getAmount} from '@/utils/util.js'
 	export default {
+		components:{
+			PopupDialog
+		},
 		data() {
 			return {
 				getAmount:getAmount,
@@ -116,11 +124,13 @@
 				walletListIndex:-1,
 				payWayType:2,
 				vertifyTypeIndex:0,
-				isBind:false
+				isBind:false,
+				wiClearVipCount:0,
+				riskCode:'3',
+				submitted:''
 			}
 		},
 		onLoad(option) {
-			console.log(option)
 			this.fromType = option.type
 			this.$store.dispatch('getUserInfo')
 			this.user = uni.getStorageSync('accountInfo')
@@ -143,9 +153,54 @@
 			}
 		},
 		methods: {
+			jumpIdcard(){
+				 if (this.riskCode == 2) {
+					// this.routingJump('pages/wallet/uploadIdCard')
+				} else if (this.riskCode == 3 || this.riskCode === 4) {
+					this.initFaceRecognition()
+				}
+			},
+			async initFaceRecognition() {
+			    // 在调用服务端初始化请求时需要传入该MetaInfo值
+			    var MetaInfo = window.getMetaInfo();
+			
+			    let data = {
+			        info: JSON.stringify(MetaInfo),
+			        returnUrl: location.href
+			    }
+			    try {
+			        let reqUrl = '/player/risk/secure3'
+			        const res = await http.post(reqUrl,data)
+					
+			        let url  = res.url
+			        // 接下来您进行调用服务端初始化请求获取TransactionUrl
+			        var TransactionUrl = url; // 此处值应为调用服务端初始化接口返回的TransactionUrl
+			        // 接下来直接跳转TransactionUrl即可开始服务
+			        window.location.href = TransactionUrl;
+			    } catch (error) {
+			        console.log(error);
+			    }
+			},
 			showHistory(){
 				uni.navigateTo({
 					url:'/pages/user/withdrawLog'
+				})
+			},
+			submitPre(){
+				this.$refs.form.validate().then(res=>{
+					let item = this.curWalletList[this.walletListIndex] || {}
+					this.wiClearVipCount = item.wiClearVipCount
+					if(this.wiClearVipCount > 0){
+						this.wiClearVipCount = this.wiClearVipCount - 1
+						this.$refs.vipCountDialog.open()
+					}else{
+						if(item.wiClearVip==0){
+							this.submit()
+						}else{
+							this.$refs.vipClearDialog.open()
+							// this.$refs.riskDialog.open()
+						}
+					}
 				})
 			},
 			submit(){
@@ -163,10 +218,9 @@
 							this.formData.money = ''
 							this.formData.payPwd = ''
 							this.formData.code = ''
-							uni.showToast({
-								title:this.$t('oper.tip.success.text'),
-								duration:2000,
-							})
+							this.$refs.tipDialog.open()
+						}else if(res.code ==103){
+							
 						}else{
 							this.isSendCode = false
 						}
@@ -351,6 +405,9 @@
 						this.startCount()
 					}
 				})
+			},
+			closeTip(){//关闭提示弹窗
+				
 			}
 		}
 	}
