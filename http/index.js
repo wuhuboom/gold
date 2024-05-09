@@ -46,6 +46,7 @@ http.beforeResponseFilter = function (res) {
 						duration:2000,
 						icon:'error'
 					})
+					return 
 				}
 			}
 			

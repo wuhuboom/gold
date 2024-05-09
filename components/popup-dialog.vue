@@ -56,7 +56,7 @@
 	flex-direction: column;
 	align-items: center;
 	padding-top: 100upx;
-	padding-bottom: 60upx;
+	padding-bottom: 70upx;
 	.popup-title{
 		font-size: 26upx;
 		font-weight: bold;
@@ -78,7 +78,7 @@
 	}
 	.popup-btn{
 		background-image: url('../static/images/index/okbtn.webp');
-		background-size: 100%;
+		background-size: 100% 100%;
 		background-color: transparent;
 		width: 268upx;
 		height: 72upx;

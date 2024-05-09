@@ -170,13 +170,16 @@
 			    }
 			    try {
 			        let reqUrl = '/player/risk/secure3'
-			        const res = await http.post(reqUrl,data)
-					
-			        let url  = res.url
-			        // 接下来您进行调用服务端初始化请求获取TransactionUrl
-			        var TransactionUrl = url; // 此处值应为调用服务端初始化接口返回的TransactionUrl
-			        // 接下来直接跳转TransactionUrl即可开始服务
-			        window.location.href = TransactionUrl;
+			        this.$http.post(reqUrl,data,res=>{
+						if(res.code == 200){
+							res = res.data
+							let url  = res.url
+							// 接下来您进行调用服务端初始化请求获取TransactionUrl
+							var TransactionUrl = url; // 此处值应为调用服务端初始化接口返回的TransactionUrl
+							// 接下来直接跳转TransactionUrl即可开始服务
+							window.location.href = TransactionUrl;
+						}
+					})
 			    } catch (error) {
 			        console.log(error);
 			    }

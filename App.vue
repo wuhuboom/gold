@@ -4,6 +4,20 @@
 			this.$i18n.locale = uni.getStorageSync('selectLang') || 'en';
 			uni.setLocale(uni.getStorageSync('selectLang') || 'en')
 			uni.setStorageSync('selectLang', this.$i18n.locale);
+			
+			const script = document.createElement('script');
+			script.src = 'https://hkwebcdn.yuncloudauth.com/cdn/jsvm_all.js';
+			script.onload = () => {
+			  console.log('jsvm_all.js loaded successfully');
+			  // 在这里可以调用jsvm_all.js中的函数或执行相关代码
+			  console.log(window.getMetaInfo(),'---------')
+			};
+			script.onerror = () => {
+			  console.error('Failed to load jsvm_all.js');
+			};
+			document.head.appendChild(script);
+			
+			
 		},
 		onShow: function() {
 		},

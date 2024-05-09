@@ -9,7 +9,6 @@ import messages from "./locale/index.js";
 import Req from './http'
 import './uni.promisify.adaptor'
 
-
 Vue.config.productionTip = false
 var http = Req.http;
 Vue.prototype.$http = http
